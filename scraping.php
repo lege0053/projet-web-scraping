@@ -12,10 +12,19 @@ $mink = new Mink(array(
 $mink->setDefaultSessionName('browser');
 $session = $mink->getSession();
 
-$session->visit('https://www.boursorama.com/');
+$session->visit('https://www.boursorama.com/cours/1rPALATI/');
 $page = $session->getPage();
+
+$dateHeure = new DateTime();
+$label = $page->find('css','a.c-faceplate__company-link')->getText();
+$cours = $page->find('css','span.c-instrument.c-instrument--last')->getText();
+$devise = $page->find('css','span.c-faceplate__price-currency')->getText();
+
+var_dump($devise);
+
+
+//cours, cours d’ouverture, cours haut, cours bas, volumes
 
 system('pause');
 
-//date/heure de collecte, cours, cours d’ouverture, cours haut, cours bas, volumes
 ?>
