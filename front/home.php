@@ -10,12 +10,12 @@ $webpage = new WebPage("DSM : Accueil ");
 
 
 $webpage->appendContent(<<<HTML
-    <div class=" ">
-        <form>
+    <div class="">
+        <form action="../api/scrapingAction.php" method="post">
             <label for="url-type-styled-input">URL à WebScraper </label>
-            <input type="url" id="url-type-styled-input" placeholder="https://www.boursorama.com/...">
+            <input type="url" name="url" id="url-type-styled-input" placeholder="https://www.boursorama.com/...">
         
-            <button class="" type="button">scraper</button>
+            <button type="submit">scraper</button>
         </form> 
     </div>
 HTML);

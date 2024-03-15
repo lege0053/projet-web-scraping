@@ -16,6 +16,9 @@ $mink = new Mink(array(
 $mink->setDefaultSessionName('browser');
 $session = $mink->getSession();
 
+$p = $_POST['url'];
+var_dump($p);
+
 $url = 'https://www.boursorama.com/cours/1rPAB/';
 $pos = strpos($url, 'cours/');
 $code = substr($url, $pos + strlen('cours/'));
