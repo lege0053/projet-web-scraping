@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
-class action
+require 'vendor/autoload.php';
+require "../front/autoload.php";
+
+class Action
 {
-    private int $Id_Action ;
-    private string $idLabel ;
-    private string $label ;
-    private string $last ;
-    private string $dateHours;
-    private string $aClose;
-    private string $aOpen;
-    private string $currency;
-    private string $high;
-    private string $low ;
-    private string $totalVolume;
-    private string $ticket;
+    private array $data = [];
 
-    private function __construct() {}
+    public function __get(string $name)
+    {
+        return $this->data[$name] ?? null;
+    }
 
-    public static function createFromId(int $id_act):self //throw InvalidArgumentException
+    public function __set(string $name, $value)
+    {
+        $this->data[$name] = $value;
+    }
+
+    public static function createFromId(int $id_act): self
     {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
@@ -25,27 +25,24 @@ class action
                 WHERE id_act = ?
         SQL);
 
-        $req->setFetchMode(PDO::FETCH_CLASS, action::class);
+        $req->setFetchMode(PDO::FETCH_CLASS, Action::class);
         $req->execute([$id_act]);
-        $mat=$req->fetch();
-        if(!$mat)
-            throw new InvalidArgumentException("id de mat non existant dans la base de donnée.");
-        return $mat;
+        $action = $req->fetch();
+        if (!$action) {
+            throw new InvalidArgumentException("Id de mat non existant dans la base de donnée.");
+        }
+        return $action;
     }
 
-     public static function getAll():array
+    public static function getAll(): array
     {
         $stat = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM action
-                SQL);
-        $stat->setFetchMode(PDO::FETCH_CLASS, action::class);
+        SQL);
+        $stat->setFetchMode(PDO::FETCH_CLASS, Action::class);
         $stat->execute();
         return $stat->fetchAll();
     }
-
-   
-
-
-
 }
+?>
