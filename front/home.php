@@ -11,20 +11,12 @@ $webpage = new WebPage("DSM : Accueil ");
 
 $webpage->appendContent(<<<HTML
     <div class=" ">
-        
-      
-        
         <form>
             <label for="url-type-styled-input">URL à WebScraper </label>
             <input type="url" id="url-type-styled-input" placeholder="https://www.boursorama.com/...">
         
             <button class="" type="button">scraper</button>
-        </form>
-
-        
-
-
-        
+        </form> 
     </div>
 HTML);
   

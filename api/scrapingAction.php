@@ -1,5 +1,9 @@
 <?php
+declare(strict_types=1);
 require 'vendor/autoload.php';
+
+require "../front/autoload.php";
+
 
 use Behat\Mink\Mink;
 use Behat\Mink\Session;
@@ -24,6 +28,7 @@ $page = $session->getPage();
 
 // récupération des données
 $dateHeure = new DateTime();
+$dateHeureString = $dateHeure->format('Y-m-d H:i:s');
 $label = $page->find('css','a.c-faceplate__company-link')->getText();
 $cours = $page->find('css','span.c-instrument.c-instrument--last')->getText();
 $devise = $page->find('css','span.c-faceplate__price-currency')->getText();
@@ -47,4 +52,15 @@ var_dump($volume);
 //marine.leg02@gmail.com
 //889RhjWx!
 
+
+$req = MyPDO::getInstance()->prepare(<<<SQL
+        INSERT INTO action ($dateHeureString,$label,$cours,$fermeture,$ouverture,$devise,$haut,$bas,$volume) VALUES ('dateHours','label','last' ,'aOpen','aClose' ,'currency' ,'high' ,'low' ,'totalVolume');
+
+        SQL);
+
+$req->setFetchMode(PDO::FETCH_CLASS, action::class);
+$req->execute();
+
 system('pause');
+
+
