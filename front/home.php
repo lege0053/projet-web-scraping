@@ -5,7 +5,7 @@ declare(strict_types=1);
 require_once "autoload.php";
 
 
-$webpage = new WebPage("DSM : Accueil ");
+$webpage = new WebPage("Home");
 
 
 
