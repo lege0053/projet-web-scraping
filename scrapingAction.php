@@ -12,7 +12,14 @@ $mink = new Mink(array(
 $mink->setDefaultSessionName('browser');
 $session = $mink->getSession();
 
-$session->visit('https://www.boursorama.com/cours/1rPAB/');
+$url = 'https://www.boursorama.com/cours/1rPAB/';
+$pos = strpos($url, 'cours/');
+$code = substr($url, $pos + strlen('cours/'));
+$code = rtrim($code, '/');
+
+var_dump($code);
+
+$session->visit($url);
 $page = $session->getPage();
 
 // récupération des données
