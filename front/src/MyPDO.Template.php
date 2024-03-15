@@ -59,7 +59,7 @@ final class MyPDO
             if (!self::hasConfiguration()) {
                 throw new Exception(__CLASS__.': Configuration not set');
             }
-            self::$PDOInstance = new PDO(self::$DSN, self::$username, self::$password, self::$driverOptions);
+            self::$PDOInstance = new PDO(self::$DSN, self::$username, self::$password);
         }
 
         return self::$PDOInstance;
@@ -71,18 +71,15 @@ final class MyPDO
      * @param string $dsn           DSN pour la connexion BD
      * @param string $username      utilisateur pour la connexion BD
      * @param string $password      mot de passe pour la connexion BD
-     * @param array  $driverOptions options du pilote BD
      */
     public static function setConfiguration(
         string $dsn,
         string $username = '',
         string $password = '',
-        array $driverOptions = []
     ): void {
         self::$DSN = $dsn;
         self::$username = $username;
         self::$password = $password;
-        self::$driverOptions = $driverOptions + self::$driverOptions;
     }
 
     /**

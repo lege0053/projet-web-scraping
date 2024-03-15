@@ -48,18 +48,22 @@ var_dump($haut);
 var_dump($bas);
 var_dump($volume);
 
-//cnamLF
-//marine.leg02@gmail.com
-//889RhjWx!
-
-
 $req = MyPDO::getInstance()->prepare(<<<SQL
-        INSERT INTO action ($dateHeureString,$label,$cours,$fermeture,$ouverture,$devise,$haut,$bas,$volume) VALUES ('dateHours','label','last' ,'aOpen','aClose' ,'currency' ,'high' ,'low' ,'totalVolume');
+        INSERT INTO action (`dateHours`, `label`, `last`, `aClose`, `aOpen`, `currency`, `high`, `low`, `totalVolume`) 
+        VALUES (:dateHours, :label, :last, :aOpen, :aClose, :currency, :high, :low, :totalVolume)
+SQL);
 
-        SQL);
-
-$req->setFetchMode(PDO::FETCH_CLASS, action::class);
-$req->execute();
+$req->execute(array(
+    'dateHours' => $dateHeureString,
+    'label' => $label,
+    'last' => $cours,
+    'aOpen' => $ouverture,
+    'aClose' => $fermeture,
+    'currency' => $devise,
+    'high' => $haut,
+    'low' => $bas,
+    'totalVolume' => $volume
+));
 
 system('pause');
 
