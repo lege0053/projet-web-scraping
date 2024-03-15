@@ -194,6 +194,7 @@ class WebPage
                     <link rel="icon" type="image/png" href="img/favicon.png">
                     <link rel="stylesheet" href="./src/css/style.css" >
                     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+                    
 
                     {$this->getHead()}
                
@@ -201,11 +202,25 @@ class WebPage
             </head>
             <html  lang="fr">
                 <body>
-
+                    <header>
+                        <nav class="navbar">
+                            <img id="logo" src="src/img/bourse.png" alt="">
+                            <h1>PigStock</h1>
+                                <ul class="items">
+                                    <li><a href="home" class="accueil">Accueil</a></li>
+                                    <li><a href="about.html" class="about">À propos</a></li>
+                                    <li><a href="services.html" class="services">Services</a></li>
+                                    <li><a href="contact.html" class="contact">Contact</a></li>
+                                </ul>
+                            </nav>
+                    </header>
+                
                     <div class="content">
+                    
                         <!-- Contenu de votre page -->
                         {$this->getBody()}
                     </div>
+                    <script src="./src/js/nav.js"></script>
                 </body>
             </html>
         HTML;
