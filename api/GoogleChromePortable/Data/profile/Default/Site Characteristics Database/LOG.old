@@ -1,3 +1,6 @@
-2024/03/15-11:08:17.624 5248 Reusing MANIFEST C:\xampp\htdocs\projet-web-scraping\api\GoogleChromePortable\Data\profile\Default\Site Characteristics Database/MANIFEST-000001
-2024/03/15-11:08:17.627 5248 Recovering log #6
-2024/03/15-11:08:17.627 5248 Reusing old log C:\xampp\htdocs\projet-web-scraping\api\GoogleChromePortable\Data\profile\Default\Site Characteristics Database/000006.log 
+2024/03/15-12:10:15.798 4748 Log #6: 2 ops saved to Table #7 OK
+2024/03/15-12:10:15.801 4748 Archiving C:\xampp\htdocs\projet-web-scraping\api\GoogleChromePortable\Data\profile\Default\Site Characteristics Database/000006.log: OK
+2024/03/15-12:10:15.802 4748 Table #4: 9 entries OK
+2024/03/15-12:10:15.802 4748 Table #7: 2 entries OK
+2024/03/15-12:10:15.811 4748 Archiving C:\xampp\htdocs\projet-web-scraping\api\GoogleChromePortable\Data\profile\Default\Site Characteristics Database/MANIFEST-000001: OK
+2024/03/15-12:10:15.826 4748 **** Repaired leveldb C:\xampp\htdocs\projet-web-scraping\api\GoogleChromePortable\Data\profile\Default\Site Characteristics Database; recovered 2 files; 509 bytes. Some data may have been lost. ****
