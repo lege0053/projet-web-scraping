@@ -5,7 +5,7 @@ html, body {
 
 body{
    background-color: #dfdfdf;
-   margin: -8px;
+   
    
 }
 
@@ -23,7 +23,6 @@ body{
 
 .content {
     position: relative;
-    text-align: center; /* Aligner le texte au centre horizontalement */
     margin: -0.4em;
     
     
@@ -70,6 +69,9 @@ body{
  label .aux {
     font-weight: bold;
     
+ }
+ .titre{
+   text-align: center;
  }
  
  input[type="url"] {
@@ -156,6 +158,29 @@ button:hover{
 .navbar a.active {
    color: #FF9100;
 }
+.cards{
+   display: flex;
+   gap: 5%;
+   justify-content: center;
+   
+
+}
+
+.action{
+   display: block;
+   padding:20px;
+   background-color: rgba(0,0,0,.1);
+   border-radius: 5px;
+   
+}
+
+.action:hover{
+   background-color: rgba(0,0,0);
+   color: #ccc;
+   transition: 0.3s;
+   
+}
+
 
 
 
