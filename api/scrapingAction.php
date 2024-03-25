@@ -27,42 +27,25 @@ $session->visit($url);
 $page = $session->getPage();
 
 // récupération des données
-$dateHeure = new DateTime();
-$dateHeureString = $dateHeure->format('Y-m-d H:i:s');
-$label = $page->find('css','a.c-faceplate__company-link')->getText();
-$cours = $page->find('css','span.c-instrument.c-instrument--last')->getText();
-$devise = $page->find('css','span.c-faceplate__price-currency')->getText();
-$ouverture = $page->find('css','span.c-instrument--open')->getText();
-$fermeture = $page->find('css','span.c-instrument--previousclose')->getText();
-$haut = $page->find('css','span.c-instrument--high')->getText();
-$bas = $page->find('css','span.c-instrument--low')->getText();
-$volume = $page->find('css','span.c-instrument--totalvolume')->getText();
+$data = array(
+  'dateHours' => (new DateTime())->format('Y-m-d H:i:s'),
+  'label' => $page->find('css','a.c-faceplate__company-link')->getText(),
+  'last' => $page->find('css','span.c-instrument.c-instrument--last')->getText(),
+  'aOpen' => $page->find('css','span.c-instrument--open')->getText(),
+  'aClose' => $page->find('css','span.c-instrument--previousclose')->getText(),
+  'currency' => $page->find('css','span.c-faceplate__price-currency')->getText(),
+  'high' => $page->find('css','span.c-instrument--high')->getText(),
+  'low' => $page->find('css','span.c-instrument--low')->getText(),
+  'totalVolume' => $page->find('css','span.c-instrument--totalvolume')->getText()
+);
 
-var_dump($dateHeure);
-var_dump($label);
-var_dump($cours);
-var_dump($devise);
-var_dump($ouverture);
-var_dump($fermeture);
-var_dump($haut);
-var_dump($bas);
-var_dump($volume);
+var_dump($data);
 
 $req = MyPDO::getInstance()->prepare(<<<SQL
         INSERT INTO action (`dateHours`, `label`, `last`, `aClose`, `aOpen`, `currency`, `high`, `low`, `totalVolume`) 
         VALUES (:dateHours, :label, :last, :aOpen, :aClose, :currency, :high, :low, :totalVolume)
 SQL);
 
-$req->execute(array(
-    'dateHours' => $dateHeureString,
-    'label' => $label,
-    'last' => $cours,
-    'aOpen' => $ouverture,
-    'aClose' => $fermeture,
-    'currency' => $devise,
-    'high' => $haut,
-    'low' => $bas,
-    'totalVolume' => $volume
-));
+$req->execute($data);
 
 
