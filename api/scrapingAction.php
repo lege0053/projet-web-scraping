@@ -65,6 +65,4 @@ $req->execute(array(
     'totalVolume' => $volume
 ));
 
-system('pause');
-
 
