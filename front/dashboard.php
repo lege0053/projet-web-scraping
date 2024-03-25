@@ -8,6 +8,14 @@ require_once "../api/action.php";
 
 $webpage = new WebPage("Dashboard");
 
+$webpage->appendContent(<<<HTML
+    <div class="">
+        <h1>Dashboard</h1>
+        <p></p>
+
+    </div>
+  HTML);
+
 $actions = Action::getAll();
 
 
@@ -24,30 +32,28 @@ foreach ($actions as $action) {
         
         // Afficher le nom de la propriété
         $propertyName = $property->getName();
+        
        
 
         // Afficher la valeur de la propriété
         $propertyValue = $property->getValue($action);
 
+        foreach ($propertyValue  as $key => $value) {
+            //var_dump($key,$value);
+            $webpage->appendContent(<<<HTML
+                <p>$key : $value <p>
+            HTML);
+        }
+        
+
     }
 }
 
 
-$webpage->appendContent(<<<HTML
-    <div class="">
-        <h1>Dashboard</h1>
-        <p></p>
-
-    </div>
-  HTML);
 
 
-foreach ($propertyValue  as $key => $value) {
-    //var_dump($key,$value);
-    $webpage->appendContent(<<<HTML
-        <p>$key : $value <p>
-    HTML);
-}
+
+
 
   
 

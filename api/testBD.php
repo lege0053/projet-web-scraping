@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require 'vendor/autoload.php';
+require 'action.php';
 
 require "../front/autoload.php";
 

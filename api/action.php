@@ -45,4 +45,3 @@ class Action
         return $stat->fetchAll();
     }
 }
-?>
