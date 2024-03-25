@@ -162,6 +162,8 @@ button:hover{
    display: flex;
    gap: 5%;
    justify-content: center;
+   flex-flow: wrap;
+  
    
 
 }
@@ -171,6 +173,7 @@ button:hover{
    padding:20px;
    background-color: rgba(0,0,0,.1);
    border-radius: 5px;
+   margin: .5em;
    
 }
 
