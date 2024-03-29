@@ -208,6 +208,7 @@ class WebPage
                             <h1>PigStock</h1>
                                 <ul class="items">
                                     <li><a href="home" class="accueil">Accueil</a></li>
+                                    <li><a href="history" class="history">Historique</a></li>
                                     <li><a href="forum" class="forum">Forum</a></li>
                                     <li><a href="dashboard" class="dashboard">Dashboard</a></li>
                                 </ul>

@@ -11,5 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector(".navbar .forum").classList.add("active");
     } else if (path.includes("contact")) {
         document.querySelector(".navbar .contact").classList.add("active");
+    } else if (path.includes("history")) {
+        document.querySelector(".navbar .history").classList.add("active");
     }
 });
