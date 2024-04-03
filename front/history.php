@@ -12,10 +12,10 @@ $webpage = new WebPage("History");
 $webpage->appendContent(<<<HTML
     <div class="p-3">
         <h2 class="mb-3">Historique à télécharger</h2>
-        <form action="../api/scrapingHistorique.php" method="post">
-            <div class="form-group">
-                <label for="actions-select">Bourse de Paris </label>
-                <select class="form-control" name="actions" id="actions-select">
+        <form class="mb-3" action="../api/scrapingHistorique.php" method="post">
+            <label for="actions-select">Bourse de Paris</label>
+            <div class="input-group">
+                <select class="custom-select" name="actions" id="actions-select">
                     <option value="1">Actions éligibles au SRD</option>
                     <option value="2">Compartiment A</option>
                     <option value="3">Compartiment B</option>
@@ -34,14 +34,16 @@ $webpage->appendContent(<<<HTML
                     <option value="16">ESTX50 EUR P</option>
                     <option value="17">Obligations</option>
                 </select>
-                <button type="submit" class="btn btn-primary mb-2">Télécharger</button>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary">Télécharger</button>
+                </div>
             </div>
         </form> 
 
-        <form action="../api/scrapingHistorique.php" method="post">
-            <div class="form-group">
-                <label for="actions-international">International : </label>
-                <select class="form-control" name="actions-int" id="aactions-international">
+        <form class="mb-3" action="../api/scrapingHistorique.php" method="post">
+            <label for="actions-international">International</label>
+            <div class="input-group">
+                <select class="custom-select" name="actions-int" id="actions-international">
                     <option value="1">Etats Unis : Indice Nasdaq 100</option>
                     <option value="2">Allemagne : Indice DAX</option>
                     <option value="3">Royaume-Uni : Indice Footsie 100</option>
@@ -53,7 +55,9 @@ $webpage->appendContent(<<<HTML
                     <option value="9">Indices internationaux</option>
                     <option value="10">Devises</option>
                 </select>
-                <button type="submit" class="btn btn-primary mb-2">Télécharger</button>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary">Télécharger</button>
+                </div>
             </div>
         </form> 
     </div>
