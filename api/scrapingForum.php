@@ -15,12 +15,10 @@ $mink = new Mink(array(
 $mink->setDefaultSessionName('browser');
 $session = $mink->getSession();
 
-$url = $_POST['url'];
-$pos = strpos($url, 'bourse/forum/');
-$code = substr($url, $pos + strlen('bourse/forum/'));
-$code = rtrim($code, '/');
-
+$code = $_POST['code'];
 var_dump($code);
+
+$url = "https://www.boursorama.com/bourse/forum/".$code;
 
 $session->visit($url);
 $page = $session->getPage();
