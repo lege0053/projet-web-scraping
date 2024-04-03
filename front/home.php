@@ -33,7 +33,9 @@ echo $webpage->toHTML();
 ?>
 
 <script>
+    // span scraper
     const scrapingTxt = document.getElementById("txt-scraper");
+    // spinner
     const btnSpinner = document.getElementById("btn-spinner");
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -41,26 +43,27 @@ echo $webpage->toHTML();
         const resultContainer = document.getElementById('resultContainer');
 
         form.addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault();
 
             const formData = new FormData(form); // Collect form data
 
-            scrapingTxt.textContent = "Scraping...";
-            btnSpinner.removeAttribute("hidden");
+            scrapingTxt.textContent = "Scraping..."; // changement du text
+            btnSpinner.removeAttribute("hidden"); // affichage du loader
 
-            // Send AJAX request
+            // AJAX request
             fetch('../api/scrapingAction.php', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text()) // Convert response to text
+            .then(response => response.text())
             .then(data => {
-                // Display response on the page
+                // affichage de la reponse
                 resultContainer.innerHTML = data;
             })
             .catch(error => {
                 console.error('Error:', error);
             }).finally(() => {
+                // text d'origine
                 scrapingTxt.textContent = "Scraper";
                 btnSpinner.setAttribute("hidden", true);
             });
