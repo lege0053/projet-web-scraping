@@ -16,14 +16,10 @@ $mink = new Mink(array(
 $mink->setDefaultSessionName('browser');
 $session = $mink->getSession();
 
-$url = $_POST['url'];
-$pos = strpos($url, 'cours/');
-$code = substr($url, $pos + strlen('cours/'));
-$code = rtrim($code, '/');
-
+$code = $_POST['code'];
 var_dump($code);
 
-$session->visit($url);
+$session->visit("https://www.boursorama.com/cours/".$code);
 $page = $session->getPage();
 
 // récupération des données
