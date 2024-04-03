@@ -1,0 +1,11 @@
+.navbar a {
+    padding: 1rem;
+    text-decoration: none;
+    color: #333 !important;
+    font-weight: bold;
+ 
+}
+
+.navbar a.active {
+    color: #FF9100 !important;
+ }
