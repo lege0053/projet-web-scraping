@@ -12,7 +12,7 @@ $webpage = new WebPage("History");
 $webpage->appendContent(<<<HTML
     <div class="p-3">
         <h2 class="mb-3">Historique à télécharger</h2>
-        <form class="mb-3" action="../api/scrapingHistorique.php" method="post">
+        <form class="mb-3" id="scrapingHistory">
             <label for="actions-select">Bourse de Paris</label>
             <div class="input-group">
                 <select class="custom-select" name="actions" id="actions-select">
@@ -35,12 +35,15 @@ $webpage->appendContent(<<<HTML
                     <option value="17">Obligations</option>
                 </select>
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-outline-secondary">Télécharger</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="btn-download">
+                        <span id="btn-spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden ></span>
+                        <span id="txt-scraper">Télécharger</span>
+                    </button>                
                 </div>
             </div>
         </form> 
 
-        <form class="mb-3" action="../api/scrapingHistorique.php" method="post">
+        <form class="mb-3" id="scrapingHistoryInter">
             <label for="actions-international">International</label>
             <div class="input-group">
                 <select class="custom-select" name="actions-int" id="actions-international">
@@ -56,14 +59,54 @@ $webpage->appendContent(<<<HTML
                     <option value="10">Devises</option>
                 </select>
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-outline-secondary">Télécharger</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="btn-download2">
+                        <span id="btn-spinner2" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden ></span>
+                        <span id="txt-scraper2">Télécharger</span>
+                    </button>
                 </div>
             </div>
         </form> 
     </div>
 HTML);
 
-
-
-
 echo $webpage->toHTML();
+?>
+
+<script>
+    function clickOnSubmitBtn(event, formulaire, btn) {
+        event.preventDefault();
+
+        btn.setAttribute("disabled", true); // desactive le bouton
+        btn.children[0].removeAttribute("hidden"); // affiche le loader
+        btn.children[1].textContent = "Téléchargement..."; // change le text
+
+        // AJAX
+        fetch('../api/scrapingHistorique.php', {
+            method: 'POST',
+            body: new FormData(formulaire)
+        })
+        .then(response => response.text())
+        .then(data => {})
+        .catch(error => {
+            console.error('Error:', error);
+        }).finally(() => {
+            btn.removeAttribute("disabled"); // reactive le bouton
+            btn.children[0].setAttribute("hidden", true); // cache le loader
+            btn.children[1].textContent = "Télécharger"; // text d'origine
+        });
+    };
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById('scrapingHistory');
+        const btn = document.getElementById("btn-download");
+        form.addEventListener('submit', function (event) {
+            clickOnSubmitBtn(event, form, btn);
+        });
+
+        const form2 = document.getElementById('scrapingHistoryInter');
+        const btn2 = document.getElementById("btn-download2");
+        form2.addEventListener('submit', function (event) {
+            clickOnSubmitBtn(event, form2, btn2);
+        });
+    });
+</script>
