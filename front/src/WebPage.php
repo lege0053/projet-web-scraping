@@ -192,7 +192,8 @@ class WebPage
                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
                     <title>{$this->getTitle()}</title>
                     <link rel="icon" type="image/png" href="img/favicon.png">
-                    <link rel="stylesheet" href="./src/css/style.css" >
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+                    <!-- <link rel="stylesheet" href="./src/css/style.css" > -->
                     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
                     
 
@@ -203,16 +204,23 @@ class WebPage
             <html  lang="fr">
                 <body>
                     <header>
-                        <nav class="navbar">
-                            <img id="logo" src="src/img/bourse.png" alt="">
-                            <h1>PigStock</h1>
-                                <ul class="items">
-                                    <li><a href="home" class="accueil">Accueil</a></li>
-                                    <li><a href="history" class="history">Historique</a></li>
-                                    <li><a href="forum" class="forum">Forum</a></li>
-                                    <li><a href="dashboard" class="dashboard">Dashboard</a></li>
-                                </ul>
-                            </nav>
+                        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+                            <a class="navbar-brand" href="/projet-web-scraping/front/home">
+                                <img src="src/img/bourse.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                                PigStock
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                                <div class="navbar-nav">
+                                    <a class="nav-item nav-link accueil" href="home">Accueil</a>
+                                    <a class="nav-item nav-link history" href="history">Historique</a>
+                                    <a class="nav-item nav-link forum" href="forum">Forum</a>
+                                    <a class="nav-item nav-link dashboard" href="dashboard">Dashboard</a>
+                                </div>
+                            </div>
+                        </nav>
                     </header>
                 
                     <div class="content">
@@ -221,6 +229,9 @@ class WebPage
                         {$this->getBody()}
                     </div>
                     <script src="./src/js/nav.js"></script>
+                    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
                 </body>
             </html>
         HTML;
