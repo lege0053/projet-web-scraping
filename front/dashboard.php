@@ -8,9 +8,26 @@ require_once "../api/action.php";
 $webpage = new WebPage("Dashboard");
 
 $webpage->appendContent(<<<HTML
-    <div class="">
-        <h1 class="titre">Dashboard</h1>
-            <div class="cards">
+    <div class="p-3">
+        <h2>Dashboard</h2>
+            <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id_Action</th>
+                    <th scope="col">idLabel</th>
+                    <th scope="col">label</th>
+                    <th scope="col">last</th>
+                    <th scope="col">dateHours</th>
+                    <th scope="col">aClose</th>
+                    <th scope="col">aOpen</th>
+                    <th scope="col">currency</th>
+                    <th scope="col">high</th>
+                    <th scope="col">low</th>
+                    <th scope="col">totalVolume</th>
+                    <th scope="col">ticket</th>
+                </tr>
+            </thead>
+            <tbody>
 HTML);
 
 $actions = Action::getAll();
@@ -33,26 +50,27 @@ foreach ($actions as $action) {
         $propertyValue = $property->getValue($action);
 
         $webpage->appendContent(<<<HTML
-            <div class="action">
-                <h1 > $propertyValue[Id_Action] </h1>
+            <tr>
+                <th scope="row"> $propertyValue[Id_Action] </h1>
         HTML);
 
         foreach ($propertyValue  as $key => $value) {
             $webpage->appendContent(<<<HTML
-                <p>$key : $value </p>
+                <td>$value</td>
             HTML);
         }
 
         $webpage->appendContent(<<<HTML
-            </div> <!-- Fermeture de la balise div "action" -->
+            </tr>
         HTML);
     }
     // Fin de la boucle pour chaque action
 }
 
 $webpage->appendContent(<<<HTML
-    </div> <!-- Fermeture de la balise div "cards" -->
-</div> <!-- Fermeture de la balise div principale -->
+        </tbody>
+    </table>
+</div>
 HTML);
 
 echo $webpage->toHTML();
