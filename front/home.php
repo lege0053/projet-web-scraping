@@ -17,7 +17,10 @@ $webpage->appendContent(<<<HTML
                     </div>
                     <input type="text" name="code" class="form-control" id="url-type-styled-input" aria-describedby="basic-addon3">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Scraper</button>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+                            <span id="btn-spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden ></span>
+                            <span id="txt-scraper">Scraper</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -30,6 +33,9 @@ echo $webpage->toHTML();
 ?>
 
 <script>
+    const scrapingTxt = document.getElementById("txt-scraper");
+    const btnSpinner = document.getElementById("btn-spinner");
+
     document.addEventListener("DOMContentLoaded", function () {
         const form = document.getElementById('scrapingForm');
         const resultContainer = document.getElementById('resultContainer');
@@ -38,6 +44,9 @@ echo $webpage->toHTML();
             event.preventDefault(); // Prevent default form submission
 
             const formData = new FormData(form); // Collect form data
+
+            scrapingTxt.textContent = "Scraping...";
+            btnSpinner.removeAttribute("hidden");
 
             // Send AJAX request
             fetch('../api/scrapingAction.php', {
@@ -51,6 +60,9 @@ echo $webpage->toHTML();
             })
             .catch(error => {
                 console.error('Error:', error);
+            }).finally(() => {
+                scrapingTxt.textContent = "Scraper";
+                btnSpinner.setAttribute("hidden", true);
             });
         });
     });
