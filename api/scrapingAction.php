@@ -40,11 +40,11 @@ echo $json_data;
 
 //var_dump($data);
 
-//$req = MyPDO::getInstance()->prepare(<<<SQL
-  //      INSERT INTO action (`dateHours`, `label`, `last`, `aClose`, `aOpen`, `currency`, `high`, `low`, `totalVolume`) 
-    //    VALUES (:dateHours, :label, :last, :aOpen, :aClose, :currency, :high, :low, :totalVolume)
-//SQL);
+$req = MyPDO::getInstance()->prepare(<<<SQL
+        INSERT INTO action (`dateHours`, `label`, `last`, `aClose`, `aOpen`, `currency`, `high`, `low`, `totalVolume`) 
+        VALUES (:dateHours, :label, :last, :aOpen, :aClose, :currency, :high, :low, :totalVolume)
+SQL);
 
-//$req->execute($data);
+$req->execute($data);
 
 

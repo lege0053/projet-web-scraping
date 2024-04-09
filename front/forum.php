@@ -37,6 +37,21 @@ echo $webpage->toHTML();
 ?>
 
 <script>
+
+    function corrigerFormatJSON(chaineJSON) {
+        // Vérifie si la chaîne JSON commence par un crochet
+        if (chaineJSON.charAt(0) !== '[') {
+            chaineJSON = '[' + chaineJSON;
+        }
+        
+        // Vérifie si la chaîne JSON se termine par un crochet
+        if (chaineJSON.charAt(chaineJSON.length - 1) !== ']') {
+            chaineJSON = chaineJSON + ']';
+        }
+        
+        return chaineJSON;
+    }
+
     // span scraper
     const scrapingTxt = document.getElementById("txt-scraper");
     // spinner
@@ -45,6 +60,7 @@ echo $webpage->toHTML();
     document.addEventListener("DOMContentLoaded", function () {
         const form = document.getElementById('scrapingForum');
         const resultContainer = document.getElementById('resultContainer');
+        const container = document.getElementById("container"); 
 
         form.addEventListener('submit', function (event) {
             event.preventDefault();
@@ -63,6 +79,7 @@ echo $webpage->toHTML();
             .then(data => {
                 // affichage de la reponse
                 resultContainer.innerHTML = data;
+                
             })
             .catch(error => {
                 console.error('Error:', error);

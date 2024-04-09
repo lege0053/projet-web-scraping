@@ -16,7 +16,10 @@ $mink->setDefaultSessionName('browser');
 $session = $mink->getSession();
 
 $code = $_POST['code'];
-var_dump($code);
+$json_code = json_encode($code);
+
+echo $json_code; 
+//var_dump($code);
 
 $url = "https://www.boursorama.com/bourse/forum/".$code;
 
@@ -39,19 +42,29 @@ foreach ($rows as $row) {
             $date = $page->find('css','#main-content > div > div.l-basic-page > div.l-basic-page__sticky-container > div.l-basic-page__main > div:nth-child(3) > div > div.c-block > div.c-block__body.c-block__body--keep-border\@xs-max.c-block__body--keep-padding\@xs-max > div.c-message > div.c-profile-card.\/.o-flag.o-flag--top > div.c-profile-card__body.\/.o-flag__body > div > div.c-source > span:nth-child(1)')->getText();
             $heure = $page->find('css','#main-content > div > div.l-basic-page > div.l-basic-page__sticky-container > div.l-basic-page__main > div:nth-child(3) > div > div.c-block > div.c-block__body.c-block__body--keep-border\@xs-max.c-block__body--keep-padding\@xs-max > div.c-message > div.c-profile-card.\/.o-flag.o-flag--top > div.c-profile-card__body.\/.o-flag__body > div > div.c-source > span:nth-child(3)')->getText();
             $contenu = $page->find('css','#main-content > div > div.l-basic-page > div.l-basic-page__sticky-container > div.l-basic-page__main > div:nth-child(3) > div > div.c-block > div.c-block__body.c-block__body--keep-border\@xs-max.c-block__body--keep-padding\@xs-max > div.c-message > p')->getText();
-        
             $add_data = array(
+                'codeAction' => $code,
                 'auteur' => $auteur,
-                'date' => $date,
-                'heure' => $heure,
-                'contenu' => $contenu
+                'dateForum' => $date,
+                'hoursForum' => $heure,
+                'content' => $contenu
             );
             array_push($data,$add_data);        
             $session->visit($url);
-        }   
+        }
+
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+            INSERT INTO forum (`codeAction`,`auteur`, `dateForum`, `hoursForum`, `content`) 
+            VALUES (:codeAction, :auteur, :dateForum, :hoursForum, :content)
+            SQL);
+        $req->execute($add_data); 
     } else {
         break;
     }
 }
+$json_data = json_encode($data);
 
-var_dump($data);
+echo $json_data;
+
+
+//var_dump($data);
