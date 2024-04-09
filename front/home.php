@@ -26,6 +26,7 @@ $webpage->appendContent(<<<HTML
             </div>
         </form> 
         <div id="resultContainer"></div>
+        <div id="container"></div>
     </div>
 HTML);
 
@@ -41,6 +42,7 @@ echo $webpage->toHTML();
     document.addEventListener("DOMContentLoaded", function () {
         const form = document.getElementById('scrapingForm');
         const resultContainer = document.getElementById('resultContainer');
+        const container = document.getElementById('container');
 
         form.addEventListener('submit', function (event) {
             event.preventDefault();
@@ -58,8 +60,31 @@ echo $webpage->toHTML();
             .then(response => response.text())
             .then(data => {
                 // affichage de la reponse
-                resultContainer.innerHTML = data;
-            })
+                //resultContainer.innerHTML = data;
+                var donnees = JSON.parse(data);
+
+                // Accéder aux valeurs
+                var dateHours = donnees.dateHours;
+                var label = donnees.label;
+                var last = donnees.last;
+                var aOpen = donnees.aOpen;
+                var aClose = donnees.aClose;
+                var currency = donnees.currency;
+                var high = donnees.high;
+                var low = donnees.low;
+                var totalVolume = donnees.totalVolume;
+
+                // Concaténation des valeurs dans la variable container
+                container.innerHTML += "<p> Date et heure : " + donnees.dateHours+"</p>" ;
+                container.innerHTML += "<p>Label : " + donnees.label+"</p>" ;
+                container.innerHTML += "<p>Dernier : " + donnees.last + "</p>";
+                container.innerHTML += "<p>Ouverture : " + donnees.aOpen + "</p>";
+                container.innerHTML += "<p>Fermeture : " + donnees.aClose + "</p>";
+                container.innerHTML += "<p>Devise : " + donnees.currency + "</p>" ;
+                container.innerHTML += "<p>Plus haut : " + donnees.high + "</p>";
+                container.innerHTML += "<p>Plus bas : " + donnees.low + "</p>";
+                container.innerHTML += "<p>Volume total : " + donnees.totalVolume + "</p>";
+                            })
             .catch(error => {
                 console.error('Error:', error);
             }).finally(() => {
