@@ -76,17 +76,19 @@ echo $webpage->toHTML();
                 container.innerHTML += "<li class='list-group-item' >Plus bas : " + donnees.low + "</li>";
                 container.innerHTML += "<li class='list-group-item' >Volume total : " + donnees.totalVolume + "</li>";
                 
-                $heure_actuelle = date('H');
-                if ($heure_actuelle == 17) {
-                    container.innerHTML += "<li class='list-group-item ' >Fin du jour : " + True+ "</li>";
+                var heure_actuelle = new Date().getHours();
+
+                // Vérification si l'heure actuelle est 17 heures
+                if (heure_actuelle == 17) {
+                // Si l'heure est 17 heures, ajoutez un élément à la liste avec "True"
+                    container.innerHTML += "<li class='list-group-item'>Fin du jour : True</li>";
+                } else {
+                // Si ce n'est pas 17 heures, ajoutez un élément à la liste avec "False"
+                    container.innerHTML += "<li class='list-group-item end'>Fin du jour : False</li>";
                 }
-                else{
-                    container.innerHTML += "<li class='list-group-item end' >Fin du jour : " + False + "</li>";    
-                }
-                container.innerHTML += "</ul> </div>";
                             })
             .catch(error => {
-                //console.error('Error:', error);
+                console.error('Error:', error);
                 container.innerHTML += "<p> erreur lors du scrapping voir le dashboard </p>";
                 //resultContainer.innerHTML = data;
 
