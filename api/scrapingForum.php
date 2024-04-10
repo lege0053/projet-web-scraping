@@ -57,7 +57,8 @@ foreach ($rows as $row) {
             INSERT INTO forum (`codeAction`,`auteur`, `dateForum`, `hoursForum`, `content`) 
             VALUES (:codeAction, :auteur, :dateForum, :hoursForum, :content)
             SQL);
-        $req->execute($add_data); 
+        $req->execute($add_data);
+        
     } else {
         break;
     }
