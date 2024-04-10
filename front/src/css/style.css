@@ -5,6 +5,16 @@
     font-weight: bold;
  
 }
+.btn{
+    width: 150px;
+    border-color: #CED4DA;
+}
+.btn:hover{
+    background-color: #FF9100;
+    color: white;
+    border: none;
+
+}
 
 .navbar a.active {
     color: #FF9100 !important;

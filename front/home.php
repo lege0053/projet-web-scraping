@@ -30,7 +30,7 @@ $webpage->appendContent(<<<HTML
 
         <div class="dash">
             <p>Pour voir toutes les Actions scapées aller ici &#x1F447;</p>
-            <a class="btn btn-primary" href="dashboard" role="button">Dashboard</a>
+            <a class="btn btn-primary" href="dashboard.php" role="button">Dashboard</a>
         </div>
         
     </div>
