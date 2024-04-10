@@ -38,7 +38,7 @@ class Forum
     {
         $stat = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
-                FROM action
+                FROM forum
         SQL);
         $stat->setFetchMode(PDO::FETCH_CLASS, Forum::class);
         $stat->execute();

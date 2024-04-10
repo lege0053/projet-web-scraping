@@ -45,7 +45,7 @@ echo $json_data;
 $heure_actuelle = date('H');
 
 // Vérification si l'heure actuelle est 17 heures
-if ($heure_actuelle == 17) {
+if ($heure_actuelle > 17 && $heure_actuelle < 0) {
   $req = MyPDO::getInstance()->prepare(<<<SQL
   INSERT INTO action (`code`,`label`,`last`,`dateHours`,  `aClose`, `aOpen`, `currency`, `high`, `low`, `totalVolume`,`endOfTheDay`) 
   VALUES (:code,:label,:last, :dateHours,   :aOpen, :aClose, :currency, :high, :low, :totalVolume,"True")
