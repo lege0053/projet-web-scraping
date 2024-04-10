@@ -213,7 +213,8 @@ class WebPage
                                     <a class="nav-item nav-link accueil" href="home">Accueil</a>
                                     <a class="nav-item nav-link history" href="history">Historique</a>
                                     <a class="nav-item nav-link forum" href="forum">Forum</a>
-                                    <a class="nav-item nav-link dashboard" href="dashboard">Dashboard</a>
+                                    <a class="nav-item nav-link TableAction" href="TableAction">Table:Action</a>
+                                    <a class="nav-item nav-link TableForum" href="TableForum">Table:Forum</a>
                                 </div>
                             </div>
                         </nav>

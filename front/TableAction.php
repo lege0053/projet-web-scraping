@@ -5,11 +5,11 @@ declare(strict_types=1);
 require_once "autoload.php";
 require_once "../api/action.php";
 
-$webpage = new WebPage("Dashboard");
+$webpage = new WebPage("TableAction");
 
 $webpage->appendContent(<<<HTML
     <div class="p-3">
-        <h2>Dashboard</h2>
+        <h2>Table:Action</h2>
             <table class="table table-hover table-striped">
             <thead>
                 <tr>

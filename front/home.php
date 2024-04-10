@@ -30,7 +30,7 @@ $webpage->appendContent(<<<HTML
 
         <div class="dash">
             <p>Pour voir toutes les Actions scapées aller ici &#x1F447;</p>
-            <a class="btn btn-primary" href="dashboard.php" role="button">Dashboard</a>
+            <a class="btn btn-primary" href="TableAction.php" role="button">Table:Action</a>
         </div>
         
     </div>
@@ -67,6 +67,7 @@ echo $webpage->toHTML();
             .then(data => {
                 // affichage de la reponse
                 //resultContainer.innerHTML = data;
+                console.log(data);
                 var donnees = JSON.parse(data);
                 container.innerHTML += "<div class='card-header'>Action</div>";
                 container.innerHTML += "<ul class='list-group list-group-flush'>";
@@ -95,7 +96,7 @@ echo $webpage->toHTML();
                             })
             .catch(error => {
                 console.error('Error:', error);
-                container.innerHTML += "<p> erreur lors du scrapping voir le dashboard </p>";
+                container.innerHTML += "<p> erreur lors du scrapping voir la page Table:Action </p>";
                 //resultContainer.innerHTML = data;
 
             }).finally(() => {
