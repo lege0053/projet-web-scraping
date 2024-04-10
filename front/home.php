@@ -81,10 +81,10 @@ echo $webpage->toHTML();
                 // Vérification si l'heure actuelle est 17 heures
                 if (heure_actuelle == 17) {
                 // Si l'heure est 17 heures, ajoutez un élément à la liste avec "True"
-                    container.innerHTML += "<li class='list-group-item'>Fin du jour : True</li>";
+                    container.innerHTML += "<li class='list-group-item end'>Fin du jour : True</li>";
                 } else {
                 // Si ce n'est pas 17 heures, ajoutez un élément à la liste avec "False"
-                    container.innerHTML += "<li class='list-group-item end'>Fin du jour : False</li>";
+                    container.innerHTML += "<li class='list-group-item '>Fin du jour : False</li>";
                 }
                             })
             .catch(error => {
