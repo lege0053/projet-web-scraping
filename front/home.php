@@ -29,7 +29,7 @@ $webpage->appendContent(<<<HTML
         <div class="center"><div id="container" class="card"></div></div>
 
         <div class="dash">
-            <p>Pour voir toutes les Actions scapées aller ici &#x1F447;</p>
+            <p>Pour voir toutes les Actions scrapées aller ici &#x1F447;</p>
             <a class="btn btn-primary" href="TableAction.php" role="button">Table:Action</a>
         </div>
         

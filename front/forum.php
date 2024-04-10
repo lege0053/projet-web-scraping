@@ -32,7 +32,7 @@ $webpage->appendContent(<<<HTML
         <div id="resultContainer"></div>
 
         <div class="dash">
-            <p>Pour voir tous les forums scapés aller ici &#x1F447;</p>
+            <p>Pour voir tous les forums scrapés aller ici &#x1F447;</p>
             <a class="btn btn-primary" href="TableForum.php" role="button">Table:Forum</a>
         </div>
     </div>
