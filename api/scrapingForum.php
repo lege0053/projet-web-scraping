@@ -32,7 +32,7 @@ $rows = $page->findAll('css', 'table > tbody > tr');
 $current = 0;
 
 foreach ($rows as $row) {
-    if($current <=5) {
+    if($current <=40) {
         $current++;
         $subject = $row->find('css','td:nth-child(2) > div > a');
         if($subject) {
