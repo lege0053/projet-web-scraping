@@ -9,3 +9,13 @@
 .navbar a.active {
     color: #FF9100 !important;
 }
+
+.end{
+    background-color: #FF9100;
+    font-weight: 700;
+}
+
+.card{
+    width: 30rem;
+    border: none;
+}

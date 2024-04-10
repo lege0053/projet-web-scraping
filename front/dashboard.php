@@ -14,7 +14,7 @@ $webpage->appendContent(<<<HTML
             <thead>
                 <tr>
                     <th scope="col">Id_Action</th>
-                    <th scope="col">idLabel</th>
+                    <th scope="col">code</th>
                     <th scope="col">label</th>
                     <th scope="col">last</th>
                     <th scope="col">dateHours</th>
@@ -25,6 +25,7 @@ $webpage->appendContent(<<<HTML
                     <th scope="col">low</th>
                     <th scope="col">totalVolume</th>
                     <th scope="col">ticket</th>
+                    <th scope="col">endOfTheDay</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,13 +52,25 @@ foreach ($actions as $action) {
 
         $webpage->appendContent(<<<HTML
             <tr>
-                <th scope="row"> $propertyValue[Id_Action] </h1>
+                
         HTML);
-
         foreach ($propertyValue  as $key => $value) {
-            $webpage->appendContent(<<<HTML
-                <td>$value</td>
+            if($value == null) {
+                $webpage->appendContent(<<<HTML
+                <td>vide</td>
             HTML);
+            } else{
+                if($key == "endOfTheDay" && $value == "True") {
+                    $webpage->appendContent(<<<HTML
+                        <td class="end">$value</td>
+                    HTML);
+                }
+                else{
+                    $webpage->appendContent(<<<HTML
+                        <td>$value</td>
+                    HTML);
+                }
+            }
         }
 
         $webpage->appendContent(<<<HTML

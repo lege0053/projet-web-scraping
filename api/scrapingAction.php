@@ -17,6 +17,7 @@ $mink->setDefaultSessionName('browser');
 $session = $mink->getSession();
 
 $code = $_POST['code'];
+
 //var_dump($code);
 
 $session->visit("https://www.boursorama.com/cours/".$code);
@@ -24,6 +25,7 @@ $page = $session->getPage();
 $date = (new DateTime())->format('Y-m-d H:i:s');
 // récupération des données
 $data = array(
+  'code' => $code,
   'dateHours' => $date,
   'label' => $page->find('css','a.c-faceplate__company-link')->getText(),
   'last' => $page->find('css','span.c-instrument.c-instrument--last')->getText(),
@@ -39,11 +41,22 @@ $json_data = json_encode($data);
 echo $json_data;
 
 //var_dump($data);
+// Récupération de l'heure actuelle
+$heure_actuelle = date('H');
 
-$req = MyPDO::getInstance()->prepare(<<<SQL
-        INSERT INTO action (`dateHours`, `label`, `last`, `aClose`, `aOpen`, `currency`, `high`, `low`, `totalVolume`) 
-        VALUES (:dateHours, :label, :last, :aOpen, :aClose, :currency, :high, :low, :totalVolume)
+// Vérification si l'heure actuelle est 17 heures
+if ($heure_actuelle == 17) {
+  $req = MyPDO::getInstance()->prepare(<<<SQL
+  INSERT INTO action (`code`,`label`,`last`,`dateHours`,  `aClose`, `aOpen`, `currency`, `high`, `low`, `totalVolume`,`endOfTheDay`) 
+  VALUES (:code,:label,:last, :dateHours,   :aOpen, :aClose, :currency, :high, :low, :totalVolume,"True")
 SQL);
+} else {
+    $req = MyPDO::getInstance()->prepare(<<<SQL
+    INSERT INTO action (`code`,`label`,`last`,`dateHours`,  `aClose`, `aOpen`, `currency`, `high`, `low`, `totalVolume`,`endOfTheDay`) 
+    VALUES (:code,:label,:last, :dateHours,   :aOpen, :aClose, :currency, :high, :low, :totalVolume,"False")
+SQL);
+}
+
 
 $req->execute($data);
 

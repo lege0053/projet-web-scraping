@@ -26,7 +26,7 @@ $webpage->appendContent(<<<HTML
             </div>
         </form> 
         <div id="resultContainer"></div>
-        <div id="container"></div>
+        <div id="container" class="card"></div>
     </div>
 HTML);
 
@@ -62,31 +62,34 @@ echo $webpage->toHTML();
                 // affichage de la reponse
                 //resultContainer.innerHTML = data;
                 var donnees = JSON.parse(data);
-
-                // Accéder aux valeurs
-                var dateHours = donnees.dateHours;
-                var label = donnees.label;
-                var last = donnees.last;
-                var aOpen = donnees.aOpen;
-                var aClose = donnees.aClose;
-                var currency = donnees.currency;
-                var high = donnees.high;
-                var low = donnees.low;
-                var totalVolume = donnees.totalVolume;
-
+                container.innerHTML += "<div class='card-header'>Action</div>";
+                container.innerHTML += "<ul class='list-group list-group-flush'>";
                 // Concaténation des valeurs dans la variable container
-                container.innerHTML += "<p> Date et heure : " + donnees.dateHours+"</p>" ;
-                container.innerHTML += "<p>Label : " + donnees.label+"</p>" ;
-                container.innerHTML += "<p>Dernier : " + donnees.last + "</p>";
-                container.innerHTML += "<p>Ouverture : " + donnees.aOpen + "</p>";
-                container.innerHTML += "<p>Fermeture : " + donnees.aClose + "</p>";
-                container.innerHTML += "<p>Devise : " + donnees.currency + "</p>" ;
-                container.innerHTML += "<p>Plus haut : " + donnees.high + "</p>";
-                container.innerHTML += "<p>Plus bas : " + donnees.low + "</p>";
-                container.innerHTML += "<p>Volume total : " + donnees.totalVolume + "</p>";
+                container.innerHTML += "<li class='list-group-item' > Code : " + donnees.code+"</li>" ;
+                container.innerHTML += "<li class='list-group-item' > Date et heure : " + donnees.dateHours+"</li>" ;
+                container.innerHTML += "<li class='list-group-item' >Label : " + donnees.label+"</li>" ;
+                container.innerHTML += "<li class='list-group-item'  >Dernier : " + donnees.last + "</li>";
+                container.innerHTML += "<li class='list-group-item'  >Ouverture : " + donnees.aOpen + "</li>";
+                container.innerHTML += "<li class='list-group-item' >Fermeture : " + donnees.aClose + "</li>";
+                container.innerHTML += "<li class='list-group-item' >Devise : " + donnees.currency + "</li>" ;
+                container.innerHTML += "<li class='list-group-item' >Plus haut : " + donnees.high + "</li>";
+                container.innerHTML += "<li class='list-group-item' >Plus bas : " + donnees.low + "</li>";
+                container.innerHTML += "<li class='list-group-item' >Volume total : " + donnees.totalVolume + "</li>";
+                
+                $heure_actuelle = date('H');
+                if ($heure_actuelle == 17) {
+                    container.innerHTML += "<li class='list-group-item ' >Fin du jour : " + True+ "</li>";
+                }
+                else{
+                    container.innerHTML += "<li class='list-group-item end' >Fin du jour : " + False + "</li>";    
+                }
+                container.innerHTML += "</ul> </div>";
                             })
             .catch(error => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
+                container.innerHTML += "<p> erreur lors du scrapping voir le dashboard </p>";
+                //resultContainer.innerHTML = data;
+
             }).finally(() => {
                 // text d'origine
                 scrapingTxt.textContent = "Scraper";
