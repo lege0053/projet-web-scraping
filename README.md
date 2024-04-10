@@ -65,6 +65,7 @@
 >MyPDO::setConfiguration('mysql:host=localhost;dbname=scraping;charset=utf8', 'admin','root');
 >```
 >- Dupliquer le fichier `.env.example` dans api/ et le renommer `.env` comme ci-dessous : 
+>
 >![alt text](image.png)
 >- Compléter `PSEUDO=''` et `MDP=''` avec votre propre compte membre boursorama, ou bien avec les valeurs données dans le rapport (demander l'accessibilité si nécessaire).
 
