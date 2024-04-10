@@ -3,7 +3,6 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 require "../front/autoload.php";
 
-
 use Behat\Mink\Mink;
 use Behat\Mink\Session;
 use DMore\ChromeDriver\ChromeDriver;
@@ -15,25 +14,34 @@ $mink = new Mink(array(
 $mink->setDefaultSessionName('browser');
 $session = $mink->getSession();
 
+
 $code = $_POST['code'];
-//$json_code = json_encode($code);
-
-//echo $json_code; 
-//var_dump($code);
-
 $url = "https://www.boursorama.com/bourse/forum/".$code;
 
 $session->visit($url);
 $page = $session->getPage();
 
-// récupération des données
-$data = array();
-$rows = $page->findAll('css', 'table > tbody > tr');
-$current = 0;
+$lastPage = $page->find('css', '#main-content > div > div.l-basic-page > div.l-basic-page__sticky-container > div.l-basic-page__main > div.c-block > div.c-block__body > div:nth-child(5) > div > div > div.c-pagination a:last-child');
+$lastPage->click();
+$currentURL = $session->getCurrentUrl();
+$position  = strpos($currentURL, "-");
+$numPage = (int)substr($currentURL, $position + 1);
 
-foreach ($rows as $row) {
-    if($current <=40) {
-        $current++;
+for ($i = 1; $i <= $numPage; $i++) {
+    $session->stop();
+    $session->restart();
+    $visitURL = "https://www.boursorama.com/bourse/forum/".$code."/page-".$i;
+    $session->visit($visitURL);
+    sleep(1);
+    
+    // récupération du tableau
+    $data = array();
+
+    //récupération des lignes
+    $rows = $page->findAll('css', 'table > tbody > tr');
+
+    // on récupère les données de chaque ligne
+    foreach ($rows as $row) {
         $subject = $row->find('css','td:nth-child(2) > div > a');
         if($subject) {
             $subject->click();
@@ -55,15 +63,9 @@ foreach ($rows as $row) {
             VALUES (:codeAction, :auteur, :dateForum, :hoursForum, :content)
             SQL);
             $req->execute($add_data);        
-            $session->visit($url);
+            $session->visit($visitURL);
         }
-    } else {
-        break;
     }
 }
 $json_data = json_encode($data);
-
 echo $json_data;
-
-
-//var_dump($data);
