@@ -26,7 +26,13 @@ $webpage->appendContent(<<<HTML
             </div>
         </form> 
         <div id="resultContainer"></div>
-        <div id="container" class="card"></div>
+        <div class="center"><div id="container" class="card"></div></div>
+
+        <div class="dash">
+            <p>Pour voir toutes les Actions scapées aller ici &#x1F447;</p>
+            <a class="btn btn-primary" href="dashboard" role="button">Dashboard</a>
+        </div>
+        
     </div>
 HTML);
 

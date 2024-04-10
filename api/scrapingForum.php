@@ -16,9 +16,9 @@ $mink->setDefaultSessionName('browser');
 $session = $mink->getSession();
 
 $code = $_POST['code'];
-$json_code = json_encode($code);
+//$json_code = json_encode($code);
 
-echo $json_code; 
+//echo $json_code; 
 //var_dump($code);
 
 $url = "https://www.boursorama.com/bourse/forum/".$code;
@@ -48,16 +48,15 @@ foreach ($rows as $row) {
                 'hoursForum' => $heure,
                 'content' => $contenu
             );
-            array_push($data,$add_data);        
-            $session->visit($url);
-        }
-
-        $req = MyPDO::getInstance()->prepare(<<<SQL
+            
+            array_push($data,$add_data);
+            $req = MyPDO::getInstance()->prepare(<<<SQL
             INSERT INTO forum (`codeAction`,`auteur`, `dateForum`, `hoursForum`, `content`) 
             VALUES (:codeAction, :auteur, :dateForum, :hoursForum, :content)
             SQL);
-        $req->execute($add_data);
-        
+            $req->execute($add_data);        
+            $session->visit($url);
+        }
     } else {
         break;
     }
