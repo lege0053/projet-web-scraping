@@ -61,6 +61,7 @@ foreach ($actions as $action) {
             HTML);
             } else{
                 if($key == "endOfTheDay" && $value == "True") {
+
                     $webpage->appendContent(<<<HTML
                         <td class="end">$value</td>
                     HTML);

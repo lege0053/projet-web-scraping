@@ -25,7 +25,7 @@ class Forum
                 WHERE id_act = ?
         SQL);
 
-        $req->setFetchMode(PDO::FETCH_CLASS, Action::class);
+        $req->setFetchMode(PDO::FETCH_CLASS, Forum::class);
         $req->execute([$id_act]);
         $action = $req->fetch();
         if (!$action) {
@@ -40,8 +40,23 @@ class Forum
                 SELECT *
                 FROM action
         SQL);
-        $stat->setFetchMode(PDO::FETCH_CLASS, Action::class);
+        $stat->setFetchMode(PDO::FETCH_CLASS, Forum::class);
         $stat->execute();
         return $stat->fetchAll();
     }
+
+    public static function getAllByCodeAction($codeAction): array
+    {
+        $pdo = MyPDO::getInstance();
+        $stat = $pdo->prepare(<<<SQL
+                SELECT *
+                FROM forum
+                WHERE codeAction = :codeAction
+        SQL);
+        $stat->bindParam(':codeAction', $codeAction, PDO::PARAM_STR);
+        $stat->setFetchMode(PDO::FETCH_CLASS, Forum::class);
+        $stat->execute();
+        return $stat->fetchAll();
+    }
+
 }

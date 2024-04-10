@@ -77,8 +77,15 @@ echo $webpage->toHTML();
             })
             .then(response => response.text())
             .then(data => {
-                // affichage de la reponse
-                resultContainer.innerHTML = data;
+                fetch('./superForum',{
+                    method:'POST',
+                    body: formData,
+                    
+                })
+                .then(response => response.text())
+                .then(data => {
+                    resultContainer.innerHTML = data;
+                })
                 
             })
             .catch(error => {
