@@ -20,7 +20,8 @@
 
 >- Chrome portable (port 9222) : https://portableapps.com/apps/internet/google_chrome_portable
 
->- XAMPP: https://www.apachefriends.org/fr/download.html. Veuillez lancer **Apache** et **MySQL**.
+>- XAMPP: https://www.apachefriends.org/fr/download.html. Dans le php.ini, remplacez `max_execution_time=120` par `max_execution_time=0`. Ensuite, veuillez lancer **Apache** et **MySQL**.`
+> 
 
 >- phpMyAdmin, possibilité de l'obtenir en local avec XAMPP, sinon : https://www.phpmyadmin.net. Créer les tables **Action** et **Forum** grâce au script SQL suivant :
 >```SQL
