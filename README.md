@@ -1,6 +1,14 @@
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://semver.org)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
 # projet-web-scraping
 
-Ce projet a pour objectif de construire en PHP une collecte de données boursières pour un entreppôt de données
+>Ce projet a pour objectif de construire en PHP une collecte de données boursières pour un entreppôt de données
+
+# Sommaire
+
+> - [Prérequis](#prerequis)
+> - [Commencer](#commencer)
 
 ## Prérequis
 >- PHP: https://www.php.net/downloads
